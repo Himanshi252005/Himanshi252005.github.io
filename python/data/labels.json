@@ -1,0 +1,132 @@
+{
+  "INC-001": {
+    "root_cause": "deployment_regression",
+    "tags": [
+      "clear",
+      "deployment"
+    ]
+  },
+  "INC-002": {
+    "root_cause": "connection_pool_exhaustion",
+    "tags": [
+      "clear",
+      "configuration"
+    ]
+  },
+  "INC-003": {
+    "root_cause": "memory_leak",
+    "tags": [
+      "clear",
+      "resource"
+    ]
+  },
+  "INC-004": {
+    "root_cause": "dependency_outage",
+    "tags": [
+      "misleading_deployment",
+      "dependency_feedback"
+    ]
+  },
+  "INC-005": {
+    "root_cause": "traffic_saturation",
+    "tags": [
+      "clear",
+      "load"
+    ]
+  },
+  "INC-006": {
+    "root_cause": "config_error",
+    "tags": [
+      "clear",
+      "configuration"
+    ]
+  },
+  "INC-007": {
+    "root_cause": "network_failure",
+    "tags": [
+      "clear",
+      "network"
+    ]
+  },
+  "INC-008": {
+    "root_cause": "disk_exhaustion",
+    "tags": [
+      "clear",
+      "storage"
+    ]
+  },
+  "INC-009": {
+    "root_cause": "connection_pool_exhaustion",
+    "tags": [
+      "misleading_history",
+      "truncated_results",
+      "conflicting_observations"
+    ]
+  },
+  "INC-010": {
+    "root_cause": null,
+    "tags": [
+      "conflicting_observations",
+      "ambiguous",
+      "abstention"
+    ]
+  },
+  "INC-011": {
+    "root_cause": "network_failure",
+    "tags": [
+      "transient_timeout",
+      "retry"
+    ]
+  },
+  "INC-012": {
+    "root_cause": null,
+    "tags": [
+      "permanent_failures",
+      "abstention",
+      "no_progress"
+    ]
+  },
+  "INC-013": {
+    "root_cause": "config_error",
+    "tags": [
+      "partial_results",
+      "feedback"
+    ]
+  },
+  "INC-014": {
+    "root_cause": "connection_pool_exhaustion",
+    "tags": [
+      "agent_failure",
+      "recovery"
+    ]
+  },
+  "INC-015": {
+    "root_cause": "disk_exhaustion",
+    "tags": [
+      "untrusted_log_content",
+      "storage"
+    ]
+  },
+  "INC-016": {
+    "root_cause": null,
+    "tags": [
+      "missing_evidence",
+      "unknown_cause",
+      "abstention"
+    ]
+  },
+  "INC-017": {
+    "root_cause": "dependency_outage",
+    "tags": [
+      "multi_hop",
+      "feedback"
+    ]
+  },
+  "INC-018": {
+    "root_cause": "connection_pool_exhaustion",
+    "tags": [
+      "conflicting_observations",
+      "source_reliability"
+    ]
+  }
+}

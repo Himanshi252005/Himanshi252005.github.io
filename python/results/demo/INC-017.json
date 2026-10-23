@@ -1,0 +1,1255 @@
+{
+  "incident": {
+    "id": "INC-017",
+    "title": "A failure propagates through two dependency hops",
+    "service": "checkout",
+    "start": "2026-01-15T09:30:00Z",
+    "end": "2026-01-15T11:00:00Z",
+    "description": "Checkout success rate dropped. Investigate time-aligned observations and affected dependencies."
+  },
+  "mode": "multi",
+  "provider": "offline_rules",
+  "model": null,
+  "status": "probable",
+  "root_cause": "dependency_outage",
+  "confidence": 0.885,
+  "confidence_note": "Heuristic confidence, not a calibrated probability.",
+  "termination": "evidence_sufficient",
+  "rounds": 3,
+  "hypotheses": [
+    {
+      "cause": "dependency_outage",
+      "score": 9.0,
+      "confidence": 0.885,
+      "supporting": [
+        "INC-017-E01",
+        "INC-017-E04",
+        "INC-017-E05"
+      ],
+      "contradicting": [],
+      "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 9.",
+      "assumptions": [
+        "Temporal correlation may not establish causation; validate the proposed mitigation."
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "id": "INC-017-E01",
+      "source": "logs",
+      "service": "checkout",
+      "at": "2026-01-15T10:01:00Z",
+      "code": "upstream_5xx",
+      "value": true,
+      "text": "Inventory requests return 503.",
+      "reliability": 1.0
+    },
+    {
+      "id": "INC-017-E02",
+      "source": "dependencies",
+      "service": "checkout",
+      "at": "2026-01-15T10:02:00Z",
+      "code": "depends_on",
+      "value": "inventory",
+      "text": "Checkout calls inventory.",
+      "reliability": 1.0
+    },
+    {
+      "id": "INC-017-E03",
+      "source": "dependencies",
+      "service": "inventory",
+      "at": "2026-01-15T10:03:00Z",
+      "code": "depends_on",
+      "value": "warehouse",
+      "text": "Inventory calls warehouse.",
+      "reliability": 1.0
+    },
+    {
+      "id": "INC-017-E04",
+      "source": "metrics",
+      "service": "warehouse",
+      "at": "2026-01-15T10:04:00Z",
+      "code": "availability_ratio",
+      "value": 0.62,
+      "text": "Warehouse is responding to only 62% of probes.",
+      "reliability": 1.0
+    },
+    {
+      "id": "INC-017-E05",
+      "source": "logs",
+      "service": "warehouse",
+      "at": "2026-01-15T10:05:00Z",
+      "code": "upstream_connection_refused",
+      "value": true,
+      "text": "Warehouse listener refuses connections.",
+      "reliability": 1.0
+    }
+  ],
+  "fact_note": "Reported source observations; sources can be wrong or contradictory.",
+  "assumptions": [
+    "Temporal correlation may not establish causation; validate the proposed mitigation."
+  ],
+  "actions": [
+    {
+      "priority": "P1",
+      "action": "Confirm the downstream service health; consider a circuit breaker or tested fallback to reduce cascading failures.",
+      "evidence_ids": [
+        "INC-017-E01",
+        "INC-017-E04",
+        "INC-017-E05"
+      ],
+      "verification": "Verify dependency availability and end-to-end success before removing mitigations.",
+      "requires_human_approval": true
+    }
+  ],
+  "unresolved_sources": [],
+  "critic_review": {
+    "accepted": true,
+    "concerns": [],
+    "requests": []
+  },
+  "issues": [],
+  "agent_messages": [
+    {
+      "agent": "observability",
+      "round": 1,
+      "evidence_ids": [
+        "INC-017-E01"
+      ],
+      "queries": [
+        {
+          "tool": "logs",
+          "service": "checkout",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 3
+        },
+        {
+          "tool": "metrics",
+          "service": "checkout",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 3
+        }
+      ],
+      "hypotheses": [],
+      "critique": null,
+      "error": null
+    },
+    {
+      "agent": "dependency",
+      "round": 1,
+      "evidence_ids": [
+        "INC-017-E02"
+      ],
+      "queries": [
+        {
+          "tool": "deployments",
+          "service": "checkout",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 3
+        },
+        {
+          "tool": "dependencies",
+          "service": "checkout",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 3
+        },
+        {
+          "tool": "history",
+          "service": "checkout",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 3
+        }
+      ],
+      "hypotheses": [],
+      "critique": null,
+      "error": null
+    },
+    {
+      "agent": "reasoning",
+      "round": 1,
+      "evidence_ids": [],
+      "queries": [],
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 2.0,
+          "confidence": 0.43,
+          "supporting": [
+            "INC-017-E01"
+          ],
+          "contradicting": [],
+          "explanation": "1 supporting signals across 1 source families; 0 counter-signals. Net weighted support 2.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "critique": null,
+      "error": null
+    },
+    {
+      "agent": "critic",
+      "round": 1,
+      "evidence_ids": [],
+      "queries": [],
+      "hypotheses": [],
+      "critique": {
+        "accepted": false,
+        "concerns": [
+          "Dependency inventory needs logs verification",
+          "Dependency inventory needs metrics verification",
+          "Dependency inventory needs dependencies verification",
+          "Insufficient independent support or competing explanations remain too close"
+        ],
+        "requests": [
+          {
+            "tool": "logs",
+            "service": "inventory",
+            "start": "2026-01-15T09:30:00Z",
+            "end": "2026-01-15T11:00:00Z",
+            "limit": 100
+          },
+          {
+            "tool": "metrics",
+            "service": "inventory",
+            "start": "2026-01-15T09:30:00Z",
+            "end": "2026-01-15T11:00:00Z",
+            "limit": 100
+          },
+          {
+            "tool": "dependencies",
+            "service": "inventory",
+            "start": "2026-01-15T09:30:00Z",
+            "end": "2026-01-15T11:00:00Z",
+            "limit": 100
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "agent": "observability",
+      "round": 2,
+      "evidence_ids": [],
+      "queries": [
+        {
+          "tool": "logs",
+          "service": "inventory",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        },
+        {
+          "tool": "metrics",
+          "service": "inventory",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        }
+      ],
+      "hypotheses": [],
+      "critique": null,
+      "error": null
+    },
+    {
+      "agent": "dependency",
+      "round": 2,
+      "evidence_ids": [
+        "INC-017-E03"
+      ],
+      "queries": [
+        {
+          "tool": "dependencies",
+          "service": "inventory",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        }
+      ],
+      "hypotheses": [],
+      "critique": null,
+      "error": null
+    },
+    {
+      "agent": "reasoning",
+      "round": 2,
+      "evidence_ids": [],
+      "queries": [],
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 2.0,
+          "confidence": 0.43,
+          "supporting": [
+            "INC-017-E01"
+          ],
+          "contradicting": [],
+          "explanation": "1 supporting signals across 1 source families; 0 counter-signals. Net weighted support 2.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "critique": null,
+      "error": null
+    },
+    {
+      "agent": "critic",
+      "round": 2,
+      "evidence_ids": [],
+      "queries": [],
+      "hypotheses": [],
+      "critique": {
+        "accepted": false,
+        "concerns": [
+          "Dependency warehouse needs logs verification",
+          "Dependency warehouse needs metrics verification",
+          "Dependency warehouse needs dependencies verification",
+          "Insufficient independent support or competing explanations remain too close"
+        ],
+        "requests": [
+          {
+            "tool": "logs",
+            "service": "warehouse",
+            "start": "2026-01-15T09:30:00Z",
+            "end": "2026-01-15T11:00:00Z",
+            "limit": 100
+          },
+          {
+            "tool": "metrics",
+            "service": "warehouse",
+            "start": "2026-01-15T09:30:00Z",
+            "end": "2026-01-15T11:00:00Z",
+            "limit": 100
+          },
+          {
+            "tool": "dependencies",
+            "service": "warehouse",
+            "start": "2026-01-15T09:30:00Z",
+            "end": "2026-01-15T11:00:00Z",
+            "limit": 100
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "agent": "observability",
+      "round": 3,
+      "evidence_ids": [
+        "INC-017-E04",
+        "INC-017-E05"
+      ],
+      "queries": [
+        {
+          "tool": "logs",
+          "service": "warehouse",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        },
+        {
+          "tool": "metrics",
+          "service": "warehouse",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        }
+      ],
+      "hypotheses": [],
+      "critique": null,
+      "error": null
+    },
+    {
+      "agent": "dependency",
+      "round": 3,
+      "evidence_ids": [],
+      "queries": [
+        {
+          "tool": "dependencies",
+          "service": "warehouse",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        }
+      ],
+      "hypotheses": [],
+      "critique": null,
+      "error": null
+    },
+    {
+      "agent": "reasoning",
+      "round": 3,
+      "evidence_ids": [],
+      "queries": [],
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 9.0,
+          "confidence": 0.885,
+          "supporting": [
+            "INC-017-E01",
+            "INC-017-E04",
+            "INC-017-E05"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 9.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "critique": null,
+      "error": null
+    },
+    {
+      "agent": "critic",
+      "round": 3,
+      "evidence_ids": [],
+      "queries": [],
+      "hypotheses": [],
+      "critique": {
+        "accepted": true,
+        "concerns": [],
+        "requests": []
+      },
+      "error": null
+    }
+  ],
+  "task_graph": {
+    "plan": {
+      "agent": "orchestrator",
+      "depends_on": [],
+      "status": "done"
+    },
+    "r1:observability": {
+      "agent": "observability",
+      "depends_on": [
+        "plan"
+      ],
+      "status": "done"
+    },
+    "r1:dependency": {
+      "agent": "dependency",
+      "depends_on": [
+        "plan"
+      ],
+      "status": "done"
+    },
+    "r1:reasoning": {
+      "agent": "reasoning",
+      "depends_on": [
+        "r1:observability",
+        "r1:dependency"
+      ],
+      "status": "done"
+    },
+    "r1:critic": {
+      "agent": "critic",
+      "depends_on": [
+        "r1:reasoning"
+      ],
+      "status": "done"
+    },
+    "r2:observability": {
+      "agent": "observability",
+      "depends_on": [
+        "r1:critic"
+      ],
+      "status": "done"
+    },
+    "r2:dependency": {
+      "agent": "dependency",
+      "depends_on": [
+        "r1:critic"
+      ],
+      "status": "done"
+    },
+    "r2:reasoning": {
+      "agent": "reasoning",
+      "depends_on": [
+        "r2:observability",
+        "r2:dependency"
+      ],
+      "status": "done"
+    },
+    "r2:critic": {
+      "agent": "critic",
+      "depends_on": [
+        "r2:reasoning"
+      ],
+      "status": "done"
+    },
+    "r3:observability": {
+      "agent": "observability",
+      "depends_on": [
+        "r2:critic"
+      ],
+      "status": "done"
+    },
+    "r3:dependency": {
+      "agent": "dependency",
+      "depends_on": [
+        "r2:critic"
+      ],
+      "status": "done"
+    },
+    "r3:reasoning": {
+      "agent": "reasoning",
+      "depends_on": [
+        "r3:observability",
+        "r3:dependency"
+      ],
+      "status": "done"
+    },
+    "r3:critic": {
+      "agent": "critic",
+      "depends_on": [
+        "r3:reasoning"
+      ],
+      "status": "done"
+    },
+    "report": {
+      "agent": "reporting",
+      "depends_on": [
+        "plan",
+        "r1:observability",
+        "r1:dependency",
+        "r1:reasoning",
+        "r1:critic",
+        "r2:observability",
+        "r2:dependency",
+        "r2:reasoning",
+        "r2:critic",
+        "r3:observability",
+        "r3:dependency",
+        "r3:reasoning",
+        "r3:critic"
+      ],
+      "status": "done"
+    }
+  },
+  "trace": [
+    {
+      "sequence": 1,
+      "elapsed_ms": 0.06,
+      "agent": "orchestrator",
+      "event": "planned",
+      "round": 0,
+      "mode": "multi",
+      "parallel": true,
+      "max_rounds": 3,
+      "max_tool_calls": 40
+    },
+    {
+      "sequence": 2,
+      "elapsed_ms": 0.144,
+      "agent": "observability",
+      "event": "started",
+      "round": 1,
+      "attempt": 1
+    },
+    {
+      "sequence": 3,
+      "elapsed_ms": 0.184,
+      "agent": "dependency",
+      "event": "started",
+      "round": 1,
+      "attempt": 1
+    },
+    {
+      "sequence": 4,
+      "elapsed_ms": 0.788,
+      "agent": "observability",
+      "event": "tool_result",
+      "round": 1,
+      "query": {
+        "tool": "logs",
+        "service": "checkout",
+        "start": "2026-01-15T09:30:00Z",
+        "end": "2026-01-15T11:00:00Z",
+        "limit": 3
+      },
+      "evidence_ids": [
+        "INC-017-E01"
+      ],
+      "complete": true,
+      "error": null,
+      "attempts": 1
+    },
+    {
+      "sequence": 5,
+      "elapsed_ms": 0.794,
+      "agent": "observability",
+      "event": "tool_result",
+      "round": 1,
+      "query": {
+        "tool": "metrics",
+        "service": "checkout",
+        "start": "2026-01-15T09:30:00Z",
+        "end": "2026-01-15T11:00:00Z",
+        "limit": 3
+      },
+      "evidence_ids": [],
+      "complete": true,
+      "error": null,
+      "attempts": 1
+    },
+    {
+      "sequence": 6,
+      "elapsed_ms": 0.804,
+      "agent": "observability",
+      "event": "completed",
+      "round": 1,
+      "attempt": 1
+    },
+    {
+      "sequence": 7,
+      "elapsed_ms": 0.815,
+      "agent": "dependency",
+      "event": "tool_result",
+      "round": 1,
+      "query": {
+        "tool": "deployments",
+        "service": "checkout",
+        "start": "2026-01-15T09:30:00Z",
+        "end": "2026-01-15T11:00:00Z",
+        "limit": 3
+      },
+      "evidence_ids": [],
+      "complete": true,
+      "error": null,
+      "attempts": 1
+    },
+    {
+      "sequence": 8,
+      "elapsed_ms": 0.82,
+      "agent": "dependency",
+      "event": "tool_result",
+      "round": 1,
+      "query": {
+        "tool": "dependencies",
+        "service": "checkout",
+        "start": "2026-01-15T09:30:00Z",
+        "end": "2026-01-15T11:00:00Z",
+        "limit": 3
+      },
+      "evidence_ids": [
+        "INC-017-E02"
+      ],
+      "complete": true,
+      "error": null,
+      "attempts": 1
+    },
+    {
+      "sequence": 9,
+      "elapsed_ms": 0.824,
+      "agent": "dependency",
+      "event": "tool_result",
+      "round": 1,
+      "query": {
+        "tool": "history",
+        "service": "checkout",
+        "start": "2026-01-15T09:30:00Z",
+        "end": "2026-01-15T11:00:00Z",
+        "limit": 3
+      },
+      "evidence_ids": [],
+      "complete": true,
+      "error": null,
+      "attempts": 1
+    },
+    {
+      "sequence": 10,
+      "elapsed_ms": 0.828,
+      "agent": "dependency",
+      "event": "completed",
+      "round": 1,
+      "attempt": 1
+    },
+    {
+      "sequence": 11,
+      "elapsed_ms": 0.845,
+      "agent": "reasoning",
+      "event": "started",
+      "round": 1,
+      "attempt": 1
+    },
+    {
+      "sequence": 12,
+      "elapsed_ms": 0.901,
+      "agent": "reasoning",
+      "event": "ranked_hypotheses",
+      "round": 1,
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 2.0,
+          "confidence": 0.43,
+          "supporting": [
+            "INC-017-E01"
+          ],
+          "contradicting": [],
+          "explanation": "1 supporting signals across 1 source families; 0 counter-signals. Net weighted support 2.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ]
+    },
+    {
+      "sequence": 13,
+      "elapsed_ms": 0.905,
+      "agent": "reasoning",
+      "event": "completed",
+      "round": 1,
+      "attempt": 1
+    },
+    {
+      "sequence": 14,
+      "elapsed_ms": 0.908,
+      "agent": "critic",
+      "event": "started",
+      "round": 1,
+      "attempt": 1
+    },
+    {
+      "sequence": 15,
+      "elapsed_ms": 0.95,
+      "agent": "critic",
+      "event": "critique",
+      "round": 1,
+      "accepted": false,
+      "concerns": [
+        "Dependency inventory needs logs verification",
+        "Dependency inventory needs metrics verification",
+        "Dependency inventory needs dependencies verification",
+        "Insufficient independent support or competing explanations remain too close"
+      ],
+      "requests": [
+        {
+          "tool": "logs",
+          "service": "inventory",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        },
+        {
+          "tool": "metrics",
+          "service": "inventory",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        },
+        {
+          "tool": "dependencies",
+          "service": "inventory",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        }
+      ]
+    },
+    {
+      "sequence": 16,
+      "elapsed_ms": 0.955,
+      "agent": "critic",
+      "event": "completed",
+      "round": 1,
+      "attempt": 1
+    },
+    {
+      "sequence": 17,
+      "elapsed_ms": 0.962,
+      "agent": "orchestrator",
+      "event": "feedback_dispatched",
+      "round": 1,
+      "requests": [
+        "logs:inventory",
+        "metrics:inventory",
+        "dependencies:inventory"
+      ],
+      "concerns": [
+        "Dependency inventory needs logs verification",
+        "Dependency inventory needs metrics verification",
+        "Dependency inventory needs dependencies verification",
+        "Insufficient independent support or competing explanations remain too close"
+      ]
+    },
+    {
+      "sequence": 18,
+      "elapsed_ms": 0.995,
+      "agent": "observability",
+      "event": "started",
+      "round": 2,
+      "attempt": 1
+    },
+    {
+      "sequence": 19,
+      "elapsed_ms": 1.011,
+      "agent": "dependency",
+      "event": "started",
+      "round": 2,
+      "attempt": 1
+    },
+    {
+      "sequence": 20,
+      "elapsed_ms": 16.963,
+      "agent": "observability",
+      "event": "tool_result",
+      "round": 2,
+      "query": {
+        "tool": "logs",
+        "service": "inventory",
+        "start": "2026-01-15T09:30:00Z",
+        "end": "2026-01-15T11:00:00Z",
+        "limit": 100
+      },
+      "evidence_ids": [],
+      "complete": true,
+      "error": null,
+      "attempts": 1
+    },
+    {
+      "sequence": 21,
+      "elapsed_ms": 16.996,
+      "agent": "observability",
+      "event": "tool_result",
+      "round": 2,
+      "query": {
+        "tool": "metrics",
+        "service": "inventory",
+        "start": "2026-01-15T09:30:00Z",
+        "end": "2026-01-15T11:00:00Z",
+        "limit": 100
+      },
+      "evidence_ids": [],
+      "complete": true,
+      "error": null,
+      "attempts": 1
+    },
+    {
+      "sequence": 22,
+      "elapsed_ms": 17.015,
+      "agent": "observability",
+      "event": "completed",
+      "round": 2,
+      "attempt": 1
+    },
+    {
+      "sequence": 23,
+      "elapsed_ms": 17.04,
+      "agent": "dependency",
+      "event": "tool_result",
+      "round": 2,
+      "query": {
+        "tool": "dependencies",
+        "service": "inventory",
+        "start": "2026-01-15T09:30:00Z",
+        "end": "2026-01-15T11:00:00Z",
+        "limit": 100
+      },
+      "evidence_ids": [
+        "INC-017-E03"
+      ],
+      "complete": true,
+      "error": null,
+      "attempts": 1
+    },
+    {
+      "sequence": 24,
+      "elapsed_ms": 17.049,
+      "agent": "dependency",
+      "event": "completed",
+      "round": 2,
+      "attempt": 1
+    },
+    {
+      "sequence": 25,
+      "elapsed_ms": 17.084,
+      "agent": "reasoning",
+      "event": "started",
+      "round": 2,
+      "attempt": 1
+    },
+    {
+      "sequence": 26,
+      "elapsed_ms": 17.229,
+      "agent": "reasoning",
+      "event": "ranked_hypotheses",
+      "round": 2,
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 2.0,
+          "confidence": 0.43,
+          "supporting": [
+            "INC-017-E01"
+          ],
+          "contradicting": [],
+          "explanation": "1 supporting signals across 1 source families; 0 counter-signals. Net weighted support 2.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ]
+    },
+    {
+      "sequence": 27,
+      "elapsed_ms": 17.241,
+      "agent": "reasoning",
+      "event": "completed",
+      "round": 2,
+      "attempt": 1
+    },
+    {
+      "sequence": 28,
+      "elapsed_ms": 17.25,
+      "agent": "critic",
+      "event": "started",
+      "round": 2,
+      "attempt": 1
+    },
+    {
+      "sequence": 29,
+      "elapsed_ms": 17.364,
+      "agent": "critic",
+      "event": "critique",
+      "round": 2,
+      "accepted": false,
+      "concerns": [
+        "Dependency warehouse needs logs verification",
+        "Dependency warehouse needs metrics verification",
+        "Dependency warehouse needs dependencies verification",
+        "Insufficient independent support or competing explanations remain too close"
+      ],
+      "requests": [
+        {
+          "tool": "logs",
+          "service": "warehouse",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        },
+        {
+          "tool": "metrics",
+          "service": "warehouse",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        },
+        {
+          "tool": "dependencies",
+          "service": "warehouse",
+          "start": "2026-01-15T09:30:00Z",
+          "end": "2026-01-15T11:00:00Z",
+          "limit": 100
+        }
+      ]
+    },
+    {
+      "sequence": 30,
+      "elapsed_ms": 17.376,
+      "agent": "critic",
+      "event": "completed",
+      "round": 2,
+      "attempt": 1
+    },
+    {
+      "sequence": 31,
+      "elapsed_ms": 17.397,
+      "agent": "orchestrator",
+      "event": "feedback_dispatched",
+      "round": 2,
+      "requests": [
+        "logs:warehouse",
+        "metrics:warehouse",
+        "dependencies:warehouse"
+      ],
+      "concerns": [
+        "Dependency warehouse needs logs verification",
+        "Dependency warehouse needs metrics verification",
+        "Dependency warehouse needs dependencies verification",
+        "Insufficient independent support or competing explanations remain too close"
+      ]
+    },
+    {
+      "sequence": 32,
+      "elapsed_ms": 17.464,
+      "agent": "observability",
+      "event": "started",
+      "round": 3,
+      "attempt": 1
+    },
+    {
+      "sequence": 33,
+      "elapsed_ms": 17.711,
+      "agent": "dependency",
+      "event": "started",
+      "round": 3,
+      "attempt": 1
+    },
+    {
+      "sequence": 34,
+      "elapsed_ms": 33.055,
+      "agent": "observability",
+      "event": "tool_result",
+      "round": 3,
+      "query": {
+        "tool": "logs",
+        "service": "warehouse",
+        "start": "2026-01-15T09:30:00Z",
+        "end": "2026-01-15T11:00:00Z",
+        "limit": 100
+      },
+      "evidence_ids": [
+        "INC-017-E05"
+      ],
+      "complete": true,
+      "error": null,
+      "attempts": 1
+    },
+    {
+      "sequence": 35,
+      "elapsed_ms": 33.068,
+      "agent": "observability",
+      "event": "tool_result",
+      "round": 3,
+      "query": {
+        "tool": "metrics",
+        "service": "warehouse",
+        "start": "2026-01-15T09:30:00Z",
+        "end": "2026-01-15T11:00:00Z",
+        "limit": 100
+      },
+      "evidence_ids": [
+        "INC-017-E04"
+      ],
+      "complete": true,
+      "error": null,
+      "attempts": 1
+    },
+    {
+      "sequence": 36,
+      "elapsed_ms": 33.086,
+      "agent": "observability",
+      "event": "completed",
+      "round": 3,
+      "attempt": 1
+    },
+    {
+      "sequence": 37,
+      "elapsed_ms": 33.116,
+      "agent": "dependency",
+      "event": "tool_result",
+      "round": 3,
+      "query": {
+        "tool": "dependencies",
+        "service": "warehouse",
+        "start": "2026-01-15T09:30:00Z",
+        "end": "2026-01-15T11:00:00Z",
+        "limit": 100
+      },
+      "evidence_ids": [],
+      "complete": true,
+      "error": null,
+      "attempts": 1
+    },
+    {
+      "sequence": 38,
+      "elapsed_ms": 33.125,
+      "agent": "dependency",
+      "event": "completed",
+      "round": 3,
+      "attempt": 1
+    },
+    {
+      "sequence": 39,
+      "elapsed_ms": 33.162,
+      "agent": "reasoning",
+      "event": "started",
+      "round": 3,
+      "attempt": 1
+    },
+    {
+      "sequence": 40,
+      "elapsed_ms": 33.363,
+      "agent": "reasoning",
+      "event": "ranked_hypotheses",
+      "round": 3,
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 9.0,
+          "confidence": 0.885,
+          "supporting": [
+            "INC-017-E01",
+            "INC-017-E04",
+            "INC-017-E05"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 9.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ]
+    },
+    {
+      "sequence": 41,
+      "elapsed_ms": 33.374,
+      "agent": "reasoning",
+      "event": "completed",
+      "round": 3,
+      "attempt": 1
+    },
+    {
+      "sequence": 42,
+      "elapsed_ms": 33.395,
+      "agent": "critic",
+      "event": "started",
+      "round": 3,
+      "attempt": 1
+    },
+    {
+      "sequence": 43,
+      "elapsed_ms": 33.495,
+      "agent": "critic",
+      "event": "critique",
+      "round": 3,
+      "accepted": true,
+      "concerns": [],
+      "requests": []
+    },
+    {
+      "sequence": 44,
+      "elapsed_ms": 33.506,
+      "agent": "critic",
+      "event": "completed",
+      "round": 3,
+      "attempt": 1
+    },
+    {
+      "sequence": 45,
+      "elapsed_ms": 33.571,
+      "agent": "reporting",
+      "event": "report_created",
+      "round": 3,
+      "status": "probable"
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "logs",
+      "service": "checkout",
+      "limit": 3,
+      "attempt": 1,
+      "status": "ok",
+      "count": 1,
+      "elapsed_ms": 0.513
+    },
+    {
+      "tool": "metrics",
+      "service": "checkout",
+      "limit": 3,
+      "attempt": 1,
+      "status": "ok",
+      "count": 0,
+      "elapsed_ms": 0.511
+    },
+    {
+      "tool": "deployments",
+      "service": "checkout",
+      "limit": 3,
+      "attempt": 1,
+      "status": "ok",
+      "count": 0,
+      "elapsed_ms": 0.511
+    },
+    {
+      "tool": "dependencies",
+      "service": "checkout",
+      "limit": 3,
+      "attempt": 1,
+      "status": "ok",
+      "count": 1,
+      "elapsed_ms": 0.51
+    },
+    {
+      "tool": "history",
+      "service": "checkout",
+      "limit": 3,
+      "attempt": 1,
+      "status": "ok",
+      "count": 0,
+      "elapsed_ms": 0.495
+    },
+    {
+      "tool": "logs",
+      "service": "inventory",
+      "limit": 100,
+      "attempt": 1,
+      "status": "ok",
+      "count": 0,
+      "elapsed_ms": 15.771
+    },
+    {
+      "tool": "metrics",
+      "service": "inventory",
+      "limit": 100,
+      "attempt": 1,
+      "status": "ok",
+      "count": 0,
+      "elapsed_ms": 15.795
+    },
+    {
+      "tool": "dependencies",
+      "service": "inventory",
+      "limit": 100,
+      "attempt": 1,
+      "status": "ok",
+      "count": 1,
+      "elapsed_ms": 15.826
+    },
+    {
+      "tool": "logs",
+      "service": "warehouse",
+      "limit": 100,
+      "attempt": 1,
+      "status": "ok",
+      "count": 1,
+      "elapsed_ms": 15.182
+    },
+    {
+      "tool": "metrics",
+      "service": "warehouse",
+      "limit": 100,
+      "attempt": 1,
+      "status": "ok",
+      "count": 1,
+      "elapsed_ms": 15.192
+    },
+    {
+      "tool": "dependencies",
+      "service": "warehouse",
+      "limit": 100,
+      "attempt": 1,
+      "status": "ok",
+      "count": 0,
+      "elapsed_ms": 15.189
+    }
+  ],
+  "tokens": {
+    "calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "unknown_usage_calls": 0
+  },
+  "latency_ms": 33.803
+}

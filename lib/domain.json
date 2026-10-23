@@ -1,0 +1,276 @@
+{
+  "rules": [
+    {
+      "cause": "deployment_regression",
+      "code": "exception_after_release",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 3
+    },
+    {
+      "cause": "deployment_regression",
+      "code": "new_version_error_ratio",
+      "operator": "ge",
+      "threshold": 0.15,
+      "weight": 4
+    },
+    {
+      "cause": "deployment_regression",
+      "code": "rollback_recovered",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 5
+    },
+    {
+      "cause": "deployment_regression",
+      "code": "release_changed",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 1
+    },
+    {
+      "cause": "deployment_regression",
+      "code": "errors_precede_deploy",
+      "operator": "eq",
+      "threshold": true,
+      "weight": -5
+    },
+    {
+      "cause": "deployment_regression",
+      "code": "old_version_same_errors",
+      "operator": "eq",
+      "threshold": true,
+      "weight": -4
+    },
+    {
+      "cause": "connection_pool_exhaustion",
+      "code": "pool_timeout",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 3
+    },
+    {
+      "cause": "connection_pool_exhaustion",
+      "code": "db_connections_ratio",
+      "operator": "ge",
+      "threshold": 0.9,
+      "weight": 4
+    },
+    {
+      "cause": "connection_pool_exhaustion",
+      "code": "pool_limit_reduced",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 2
+    },
+    {
+      "cause": "connection_pool_exhaustion",
+      "code": "pool_resize_recovered",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 4
+    },
+    {
+      "cause": "connection_pool_exhaustion",
+      "code": "db_connections_ratio",
+      "operator": "le",
+      "threshold": 0.5,
+      "weight": -4
+    },
+    {
+      "cause": "memory_leak",
+      "code": "oom_killed",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 3
+    },
+    {
+      "cause": "memory_leak",
+      "code": "memory_growth_mb_min",
+      "operator": "ge",
+      "threshold": 10,
+      "weight": 4
+    },
+    {
+      "cause": "memory_leak",
+      "code": "retained_heap_growth",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 3
+    },
+    {
+      "cause": "memory_leak",
+      "code": "memory_growth_mb_min",
+      "operator": "le",
+      "threshold": 0,
+      "weight": -3
+    },
+    {
+      "cause": "dependency_outage",
+      "code": "upstream_5xx",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 2
+    },
+    {
+      "cause": "dependency_outage",
+      "code": "availability_ratio",
+      "operator": "le",
+      "threshold": 0.9,
+      "weight": 4
+    },
+    {
+      "cause": "dependency_outage",
+      "code": "upstream_connection_refused",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 3
+    },
+    {
+      "cause": "dependency_outage",
+      "code": "availability_ratio",
+      "operator": "ge",
+      "threshold": 0.999,
+      "weight": -3
+    },
+    {
+      "cause": "traffic_saturation",
+      "code": "request_rate_vs_baseline",
+      "operator": "ge",
+      "threshold": 3,
+      "weight": 3
+    },
+    {
+      "cause": "traffic_saturation",
+      "code": "cpu_utilization",
+      "operator": "ge",
+      "threshold": 0.9,
+      "weight": 3
+    },
+    {
+      "cause": "traffic_saturation",
+      "code": "queue_depth",
+      "operator": "ge",
+      "threshold": 500,
+      "weight": 2
+    },
+    {
+      "cause": "traffic_saturation",
+      "code": "request_rate_vs_baseline",
+      "operator": "le",
+      "threshold": 1.2,
+      "weight": -3
+    },
+    {
+      "cause": "config_error",
+      "code": "invalid_config",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 4
+    },
+    {
+      "cause": "config_error",
+      "code": "config_changed",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 1
+    },
+    {
+      "cause": "config_error",
+      "code": "config_revert_recovered",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 5
+    },
+    {
+      "cause": "config_error",
+      "code": "config_validated",
+      "operator": "eq",
+      "threshold": true,
+      "weight": -3
+    },
+    {
+      "cause": "network_failure",
+      "code": "dns_failure",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 4
+    },
+    {
+      "cause": "network_failure",
+      "code": "packet_loss_ratio",
+      "operator": "ge",
+      "threshold": 0.1,
+      "weight": 3
+    },
+    {
+      "cause": "network_failure",
+      "code": "dns_failure_ratio",
+      "operator": "ge",
+      "threshold": 0.1,
+      "weight": 3
+    },
+    {
+      "cause": "network_failure",
+      "code": "network_probe_success",
+      "operator": "eq",
+      "threshold": true,
+      "weight": -3
+    },
+    {
+      "cause": "disk_exhaustion",
+      "code": "no_space_left",
+      "operator": "eq",
+      "threshold": true,
+      "weight": 4
+    },
+    {
+      "cause": "disk_exhaustion",
+      "code": "disk_used_ratio",
+      "operator": "ge",
+      "threshold": 0.95,
+      "weight": 4
+    },
+    {
+      "cause": "disk_exhaustion",
+      "code": "disk_used_ratio",
+      "operator": "le",
+      "threshold": 0.7,
+      "weight": -4
+    }
+  ],
+  "actions": {
+    "deployment_regression": [
+      "Validate the failing version with a canary; prepare a rollback to the last healthy release.",
+      "Compare error rate by version and verify recovery before restoring traffic."
+    ],
+    "connection_pool_exhaustion": [
+      "Inspect active and idle connections and pool limits; drain stuck consumers before a controlled pool adjustment.",
+      "Verify database headroom and falling connection wait time; do not raise limits blindly."
+    ],
+    "memory_leak": [
+      "Capture a heap profile and compare retained allocations; recycle affected instances gradually if needed.",
+      "Verify stable memory after warm-up and no further OOM events."
+    ],
+    "dependency_outage": [
+      "Confirm the downstream service health; consider a circuit breaker or tested fallback to reduce cascading failures.",
+      "Verify dependency availability and end-to-end success before removing mitigations."
+    ],
+    "traffic_saturation": [
+      "Check capacity and demand; apply tested rate limits or scale consumers within downstream capacity.",
+      "Verify queue depth, CPU and tail latency return to baseline."
+    ],
+    "config_error": [
+      "Validate the changed configuration against the last known working version; prepare a scoped revert.",
+      "Verify validation passes and affected requests recover after the change."
+    ],
+    "network_failure": [
+      "Check DNS resolution and packet loss from affected hosts; engage the network owner with probe evidence.",
+      "Verify resolution, connectivity and end-to-end latency from multiple affected hosts."
+    ],
+    "disk_exhaustion": [
+      "Inspect disk and inode usage; rotate expendable logs or expand the volume using an approved runbook.",
+      "Verify free space and successful writes; preserve evidence before cleanup."
+    ]
+  }
+}

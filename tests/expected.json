@@ -1,0 +1,1264 @@
+{
+  "multi": {
+    "INC-001": {
+      "root_cause": "deployment_regression",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "deployment_regression",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-001-E01",
+            "INC-001-E02",
+            "INC-001-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 3 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-002": {
+      "root_cause": "connection_pool_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 9.0,
+          "confidence": 0.885,
+          "supporting": [
+            "INC-002-E01",
+            "INC-002-E02",
+            "INC-002-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 3 source families; 0 counter-signals. Net weighted support 9.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-003": {
+      "root_cause": "memory_leak",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "memory_leak",
+          "score": 10.0,
+          "confidence": 0.95,
+          "supporting": [
+            "INC-003-E01",
+            "INC-003-E02",
+            "INC-003-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 10.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-004": {
+      "root_cause": "dependency_outage",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 9.0,
+          "confidence": 0.885,
+          "supporting": [
+            "INC-004-E02",
+            "INC-004-E05",
+            "INC-004-E06"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 9.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        },
+        {
+          "cause": "deployment_regression",
+          "score": -4.0,
+          "confidence": 0.04,
+          "supporting": [
+            "INC-004-E01"
+          ],
+          "contradicting": [
+            "INC-004-E03"
+          ],
+          "explanation": "1 supporting signals across 1 source families; 1 counter-signals. Net weighted support -4.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 2,
+      "termination": "evidence_sufficient"
+    },
+    "INC-005": {
+      "root_cause": "traffic_saturation",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "traffic_saturation",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-005-E01",
+            "INC-005-E02",
+            "INC-005-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-006": {
+      "root_cause": "config_error",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "config_error",
+          "score": 10.0,
+          "confidence": 0.95,
+          "supporting": [
+            "INC-006-E01",
+            "INC-006-E02",
+            "INC-006-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 3 source families; 0 counter-signals. Net weighted support 10.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-007": {
+      "root_cause": "network_failure",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "network_failure",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-007-E01",
+            "INC-007-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-008": {
+      "root_cause": "disk_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "disk_exhaustion",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-008-E01",
+            "INC-008-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-009": {
+      "root_cause": "connection_pool_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-009-E03",
+            "INC-009-E07"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        },
+        {
+          "cause": "deployment_regression",
+          "score": -3.0,
+          "confidence": 0.105,
+          "supporting": [
+            "INC-009-E02"
+          ],
+          "contradicting": [
+            "INC-009-E08"
+          ],
+          "explanation": "1 supporting signals across 1 source families; 1 counter-signals. Net weighted support -3.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 2,
+      "termination": "evidence_sufficient"
+    },
+    "INC-010": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [
+        {
+          "cause": "traffic_saturation",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-010-E03",
+            "INC-010-E04",
+            "INC-010-E05"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        },
+        {
+          "cause": "memory_leak",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-010-E01",
+            "INC-010-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "insufficient_evidence"
+    },
+    "INC-011": {
+      "root_cause": "network_failure",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "network_failure",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-011-E01",
+            "INC-011-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-012": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [],
+      "rounds": 2,
+      "termination": "no_progress"
+    },
+    "INC-013": {
+      "root_cause": "config_error",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "config_error",
+          "score": 10.0,
+          "confidence": 0.95,
+          "supporting": [
+            "INC-013-E02",
+            "INC-013-E04",
+            "INC-013-E05"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 3 source families; 0 counter-signals. Net weighted support 10.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 2,
+      "termination": "evidence_sufficient"
+    },
+    "INC-014": {
+      "root_cause": "connection_pool_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-014-E01",
+            "INC-014-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-015": {
+      "root_cause": "disk_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "disk_exhaustion",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-015-E02",
+            "INC-015-E03"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-016": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [],
+      "rounds": 1,
+      "termination": "insufficient_evidence"
+    },
+    "INC-017": {
+      "root_cause": "dependency_outage",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 9.0,
+          "confidence": 0.885,
+          "supporting": [
+            "INC-017-E01",
+            "INC-017-E04",
+            "INC-017-E05"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 9.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 3,
+      "termination": "evidence_sufficient"
+    },
+    "INC-018": {
+      "root_cause": "connection_pool_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 6.2,
+          "confidence": 0.703,
+          "supporting": [
+            "INC-018-E01",
+            "INC-018-E02"
+          ],
+          "contradicting": [
+            "INC-018-E03"
+          ],
+          "explanation": "2 supporting signals across 2 source families; 1 counter-signals. Net weighted support 6.2.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    }
+  },
+  "single": {
+    "INC-001": {
+      "root_cause": "deployment_regression",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "deployment_regression",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-001-E01",
+            "INC-001-E02",
+            "INC-001-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 3 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-002": {
+      "root_cause": "connection_pool_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 9.0,
+          "confidence": 0.885,
+          "supporting": [
+            "INC-002-E01",
+            "INC-002-E02",
+            "INC-002-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 3 source families; 0 counter-signals. Net weighted support 9.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-003": {
+      "root_cause": "memory_leak",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "memory_leak",
+          "score": 10.0,
+          "confidence": 0.95,
+          "supporting": [
+            "INC-003-E01",
+            "INC-003-E02",
+            "INC-003-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 10.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-004": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 2.0,
+          "confidence": 0.43,
+          "supporting": [
+            "INC-004-E02"
+          ],
+          "contradicting": [],
+          "explanation": "1 supporting signals across 1 source families; 0 counter-signals. Net weighted support 2.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        },
+        {
+          "cause": "deployment_regression",
+          "score": -4.0,
+          "confidence": 0.04,
+          "supporting": [
+            "INC-004-E01"
+          ],
+          "contradicting": [
+            "INC-004-E03"
+          ],
+          "explanation": "1 supporting signals across 1 source families; 1 counter-signals. Net weighted support -4.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-005": {
+      "root_cause": "traffic_saturation",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "traffic_saturation",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-005-E01",
+            "INC-005-E02",
+            "INC-005-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-006": {
+      "root_cause": "config_error",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "config_error",
+          "score": 10.0,
+          "confidence": 0.95,
+          "supporting": [
+            "INC-006-E01",
+            "INC-006-E02",
+            "INC-006-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 3 source families; 0 counter-signals. Net weighted support 10.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-007": {
+      "root_cause": "network_failure",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "network_failure",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-007-E01",
+            "INC-007-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-008": {
+      "root_cause": "disk_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "disk_exhaustion",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-008-E01",
+            "INC-008-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-009": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 3.0,
+          "confidence": 0.495,
+          "supporting": [
+            "INC-009-E03"
+          ],
+          "contradicting": [],
+          "explanation": "1 supporting signals across 1 source families; 0 counter-signals. Net weighted support 3.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        },
+        {
+          "cause": "deployment_regression",
+          "score": -3.0,
+          "confidence": 0.105,
+          "supporting": [
+            "INC-009-E02"
+          ],
+          "contradicting": [
+            "INC-009-E08"
+          ],
+          "explanation": "1 supporting signals across 1 source families; 1 counter-signals. Net weighted support -3.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-010": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [
+        {
+          "cause": "traffic_saturation",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-010-E03",
+            "INC-010-E04",
+            "INC-010-E05"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        },
+        {
+          "cause": "memory_leak",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-010-E01",
+            "INC-010-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-011": {
+      "root_cause": "network_failure",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "network_failure",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-011-E01",
+            "INC-011-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-012": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-013": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [
+        {
+          "cause": "config_error",
+          "score": 1.0,
+          "confidence": 0.365,
+          "supporting": [
+            "INC-013-E05"
+          ],
+          "contradicting": [],
+          "explanation": "1 supporting signals across 1 source families; 0 counter-signals. Net weighted support 1.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-014": {
+      "root_cause": "connection_pool_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-014-E01",
+            "INC-014-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-015": {
+      "root_cause": "disk_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "disk_exhaustion",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-015-E02",
+            "INC-015-E03"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-016": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-017": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 2.0,
+          "confidence": 0.43,
+          "supporting": [
+            "INC-017-E01"
+          ],
+          "contradicting": [],
+          "explanation": "1 supporting signals across 1 source families; 0 counter-signals. Net weighted support 2.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    },
+    "INC-018": {
+      "root_cause": "connection_pool_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 6.2,
+          "confidence": 0.703,
+          "supporting": [
+            "INC-018-E01",
+            "INC-018-E02"
+          ],
+          "contradicting": [
+            "INC-018-E03"
+          ],
+          "explanation": "2 supporting signals across 2 source families; 1 counter-signals. Net weighted support 6.2.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "single_pass_complete"
+    }
+  },
+  "sequential-adaptive": {
+    "INC-001": {
+      "root_cause": "deployment_regression",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "deployment_regression",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-001-E01",
+            "INC-001-E02",
+            "INC-001-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 3 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-002": {
+      "root_cause": "connection_pool_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 9.0,
+          "confidence": 0.885,
+          "supporting": [
+            "INC-002-E01",
+            "INC-002-E02",
+            "INC-002-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 3 source families; 0 counter-signals. Net weighted support 9.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-003": {
+      "root_cause": "memory_leak",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "memory_leak",
+          "score": 10.0,
+          "confidence": 0.95,
+          "supporting": [
+            "INC-003-E01",
+            "INC-003-E02",
+            "INC-003-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 10.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-004": {
+      "root_cause": "dependency_outage",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 9.0,
+          "confidence": 0.885,
+          "supporting": [
+            "INC-004-E02",
+            "INC-004-E05",
+            "INC-004-E06"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 9.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        },
+        {
+          "cause": "deployment_regression",
+          "score": -4.0,
+          "confidence": 0.04,
+          "supporting": [
+            "INC-004-E01"
+          ],
+          "contradicting": [
+            "INC-004-E03"
+          ],
+          "explanation": "1 supporting signals across 1 source families; 1 counter-signals. Net weighted support -4.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 2,
+      "termination": "evidence_sufficient"
+    },
+    "INC-005": {
+      "root_cause": "traffic_saturation",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "traffic_saturation",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-005-E01",
+            "INC-005-E02",
+            "INC-005-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-006": {
+      "root_cause": "config_error",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "config_error",
+          "score": 10.0,
+          "confidence": 0.95,
+          "supporting": [
+            "INC-006-E01",
+            "INC-006-E02",
+            "INC-006-E03"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 3 source families; 0 counter-signals. Net weighted support 10.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-007": {
+      "root_cause": "network_failure",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "network_failure",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-007-E01",
+            "INC-007-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-008": {
+      "root_cause": "disk_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "disk_exhaustion",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-008-E01",
+            "INC-008-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-009": {
+      "root_cause": "connection_pool_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-009-E03",
+            "INC-009-E07"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        },
+        {
+          "cause": "deployment_regression",
+          "score": -3.0,
+          "confidence": 0.105,
+          "supporting": [
+            "INC-009-E02"
+          ],
+          "contradicting": [
+            "INC-009-E08"
+          ],
+          "explanation": "1 supporting signals across 1 source families; 1 counter-signals. Net weighted support -3.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 2,
+      "termination": "evidence_sufficient"
+    },
+    "INC-010": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [
+        {
+          "cause": "traffic_saturation",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-010-E03",
+            "INC-010-E04",
+            "INC-010-E05"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        },
+        {
+          "cause": "memory_leak",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-010-E01",
+            "INC-010-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "insufficient_evidence"
+    },
+    "INC-011": {
+      "root_cause": "network_failure",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "network_failure",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-011-E01",
+            "INC-011-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-012": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [],
+      "rounds": 2,
+      "termination": "no_progress"
+    },
+    "INC-013": {
+      "root_cause": "config_error",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "config_error",
+          "score": 10.0,
+          "confidence": 0.95,
+          "supporting": [
+            "INC-013-E02",
+            "INC-013-E04",
+            "INC-013-E05"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 3 source families; 0 counter-signals. Net weighted support 10.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 2,
+      "termination": "evidence_sufficient"
+    },
+    "INC-014": {
+      "root_cause": "connection_pool_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 7.0,
+          "confidence": 0.755,
+          "supporting": [
+            "INC-014-E01",
+            "INC-014-E02"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 7.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-015": {
+      "root_cause": "disk_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "disk_exhaustion",
+          "score": 8.0,
+          "confidence": 0.82,
+          "supporting": [
+            "INC-015-E02",
+            "INC-015-E03"
+          ],
+          "contradicting": [],
+          "explanation": "2 supporting signals across 2 source families; 0 counter-signals. Net weighted support 8.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    },
+    "INC-016": {
+      "root_cause": null,
+      "status": "inconclusive",
+      "hypotheses": [],
+      "rounds": 1,
+      "termination": "insufficient_evidence"
+    },
+    "INC-017": {
+      "root_cause": "dependency_outage",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "dependency_outage",
+          "score": 9.0,
+          "confidence": 0.885,
+          "supporting": [
+            "INC-017-E01",
+            "INC-017-E04",
+            "INC-017-E05"
+          ],
+          "contradicting": [],
+          "explanation": "3 supporting signals across 2 source families; 0 counter-signals. Net weighted support 9.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 3,
+      "termination": "evidence_sufficient"
+    },
+    "INC-018": {
+      "root_cause": "connection_pool_exhaustion",
+      "status": "probable",
+      "hypotheses": [
+        {
+          "cause": "connection_pool_exhaustion",
+          "score": 6.2,
+          "confidence": 0.703,
+          "supporting": [
+            "INC-018-E01",
+            "INC-018-E02"
+          ],
+          "contradicting": [
+            "INC-018-E03"
+          ],
+          "explanation": "2 supporting signals across 2 source families; 1 counter-signals. Net weighted support 6.2.",
+          "assumptions": [
+            "Temporal correlation may not establish causation; validate the proposed mitigation."
+          ]
+        }
+      ],
+      "rounds": 1,
+      "termination": "evidence_sufficient"
+    }
+  }
+}
