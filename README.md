@@ -2,7 +2,7 @@
 
 An evidence-first investigation workspace by **Himanshi Rathore**.
 
-**Live website: https://himanshi252005.github.io/**
+**Live website: [Open Orange Incident Intelligence](https://himanshi252005.github.io/Multi-Agent-Production-Incident-Investigation-System/)**
 
 Explore 18 synthetic production incidents through six specialist roles: Orchestrator, Observability, Dependency, Reasoning, Critic, and Reporting. The interface uses an ivory, forest green, and orange palette and adapts to phones and desktops.
 
